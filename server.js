@@ -2,7 +2,7 @@ const express = require('express');
 const dbUtils = require('./models/contract.js');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 8080;
+const port = port = process.env.PORT || 80;
 
 app.use(bodyParser.json());
 
