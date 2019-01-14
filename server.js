@@ -29,10 +29,10 @@ app.get('/hello', function (req, res){
 });
 
 app.get('/contracts/:lowestPrice/:highestPrice/:startDate/:endDate/:userIsLogged', async function (req, res){
-  let startDate = req.params.startDate;
-  let endDate = req.params.endDate;
-  let lowestPrice = req.params.lowestPrice;
-  let highestPrice = req.params.highestPrice;
+  let startDate = Number(req.params.startDate);
+  let endDate = Number(req.params.endDate);
+  let lowestPrice = Number(req.params.lowestPrice);
+  let highestPrice = Number(req.params.highestPrice);
   let userIsLogged = req.params.userIsLogged;
 
   if(userIsLogged === false){
