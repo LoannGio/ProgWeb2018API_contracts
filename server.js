@@ -29,14 +29,30 @@ app.get('/hello', function (req, res){
   res.send('hello world');
 });
 
-app.post('/contracts', async function (req, res){
+app.get('/contracts', async function (req, res){
   let startDate = req.body.startDate;
   let endDate = req.body.endDate;
   let lowestPrice = req.body.lowestPrice;
   let highestPrice = req.body.highestPrice;
+  let userIsLogged = req.body.userIsLogged;
 
-  let contractList = await dbUtils.getContracts(startDate, endDate, lowestPrice, highestPrice);
-  res.send(contractList);
+  if(userIsLogged === false){
+    res.status(403);
+    res.send("Requeter is not logged");
+  } else{
+    let contractList = await dbUtils.getContracts(startDate, endDate, lowestPrice, highestPrice);
+    res.status(200);
+    res.send(contractList);
+  }
+});
+
+app.get('*', function (req, res){
+  res.status(405);
+  res.send('Nothing to see here');
+});
+
+app.post('*', function (req, res){
+
 });
 
 app.listen(port, function(){
