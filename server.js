@@ -1,10 +1,8 @@
 const express = require('express');
 const dbUtils = require('./models/contract.js');
-const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 80;
 
-app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
 
@@ -29,30 +27,46 @@ app.get('/hello', function (req, res){
   res.send('hello world');
 });
 
-app.get('/contracts', async function (req, res){
-  let startDate = req.body.startDate;
-  let endDate = req.body.endDate;
-  let lowestPrice = req.body.lowestPrice;
-  let highestPrice = req.body.highestPrice;
-  let userIsLogged = req.body.userIsLogged;
+app.get('/contracts/:lowestPrice/:highestPrice/:startDate/:endDate/:userIsLogged', async function (req, res){
+  let startDate = req.params.startDate;
+  let endDate = req.params.endDate;
+  let lowestPrice = req.params.lowestPrice;
+  let highestPrice = req.params.highestPrice;
+  let userIsLogged = req.params.userIsLogged;
 
   if(userIsLogged === false){
     res.status(403);
     res.send("Requeter is not logged");
   } else{
     let contractList = await dbUtils.getContracts(startDate, endDate, lowestPrice, highestPrice);
-    res.status(200);
-    res.send(contractList);
+    if(contractList.length === 0){
+      res.status(204);
+      res.send(contractList);
+    } else{
+      res.status(200);
+      res.send(contractList);
+    }
   }
 });
 
 app.get('*', function (req, res){
-  res.status(401);
-  res.send('Nothing to see here');
+  res.status(405);
+  res.send('This API does not handle this URL');
 });
 
 app.post('*', function (req, res){
+  res.status(405);
+  res.send('This API does not handle POST');
+});
 
+app.delete('*', function (req, res){
+  res.status(405);
+  res.send('This API does not handle DELETE');
+});
+
+app.put('*', function (req, res){
+  res.status(405);
+  res.send('This API does not handle PUT');
 });
 
 app.listen(port, function(){
