@@ -24,6 +24,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/hello', function (req, res){
+  res.status(200);
   res.send('hello world');
 });
 
