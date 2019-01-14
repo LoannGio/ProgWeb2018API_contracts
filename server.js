@@ -25,6 +25,14 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.get('/', function (req, res){
+  res.send('hello world');
+});
+
+app.get('/toto', function (req, res){
+  res.send('hello toto');
+});
+
 app.post('/contracts', async function (req, res){
   let startDate = req.body.startDate;
   let endDate = req.body.endDate;
