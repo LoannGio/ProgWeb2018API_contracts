@@ -1,7 +1,7 @@
 const express = require('express');
 const dbUtils = require('./models/contract.js');
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 5000;
 
 
 app.use(function (req, res, next) {
@@ -21,11 +21,6 @@ app.use(function (req, res, next) {
 
     // Pass to next layer of middleware
     next();
-});
-
-app.get('/hello', function (req, res){
-  res.status(200);
-  res.send('hello world');
 });
 
 app.get('/contracts/:lowestPrice/:highestPrice/:startDate/:endDate/:userIsLogged', async function (req, res){
@@ -50,22 +45,22 @@ app.get('/contracts/:lowestPrice/:highestPrice/:startDate/:endDate/:userIsLogged
   }
 });
 
-app.get('*', function (req, res){
+app.get('/*', function (req, res){
   res.status(405);
   res.send('This API does not handle this URL');
 });
 
-app.post('*', function (req, res){
+app.post('/*', function (req, res){
   res.status(405);
   res.send('This API does not handle POST');
 });
 
-app.delete('*', function (req, res){
+app.delete('/*', function (req, res){
   res.status(405);
   res.send('This API does not handle DELETE');
 });
 
-app.put('*', function (req, res){
+app.put('/*', function (req, res){
   res.status(405);
   res.send('This API does not handle PUT');
 });
