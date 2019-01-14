@@ -47,7 +47,7 @@ app.get('/contracts', async function (req, res){
 });
 
 app.get('*', function (req, res){
-  res.status(405);
+  res.status(401);
   res.send('Nothing to see here');
 });
 
