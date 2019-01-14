@@ -2,7 +2,7 @@ const express = require('express');
 const dbUtils = require('./models/contract.js');
 const bodyParser = require('body-parser');
 const app = express();
-const port = port = process.env.PORT || 80;
+const port = process.env.PORT || 80;
 
 app.use(bodyParser.json());
 
@@ -25,12 +25,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get('/', function (req, res){
+app.get('/hello', function (req, res){
   res.send('hello world');
-});
-
-app.get('/toto', function (req, res){
-  res.send('hello toto');
 });
 
 app.post('/contracts', async function (req, res){
