@@ -1,7 +1,7 @@
 const express = require('express');
 const dbUtils = require('./models/contract.js');
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 80;
 
 
 app.use(function (req, res, next) {
