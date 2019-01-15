@@ -28,7 +28,7 @@ app.get('/contracts/:lowestPrice/:highestPrice/:startDate/:endDate/:userIsLogged
   let endDate = Number(req.params.endDate);
   let lowestPrice = Number(req.params.lowestPrice);
   let highestPrice = Number(req.params.highestPrice);
-  let userIsLogged = req.params.userIsLogged;
+  let userIsLogged = (req.params.userIsLogged === 'true');
 
   if(userIsLogged === false){
     res.status(403);
