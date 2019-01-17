@@ -14,3 +14,5 @@ Documentation de l'API (Swagger) : https://app.swaggerhub.com/apis-docs/MaximeLo
 Après avoir cloné le projet, lancer les commandes suivantes depuis la racine :
 * `npm install`
 * `npm start`
+
+Par défaut, l'application est lancée sur le port 80. Pour modifier le port, démarrer avec la commande : `SET PORT=XXXX && npm start` où XXXX est votre numéro de port.
